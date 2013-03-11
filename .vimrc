@@ -243,6 +243,7 @@ map zh zH
 " }
 
 if has('gui_running')
-    set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
+    "set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
+    set guifont=Inconsolata\ Medium\ 10
 endif
 
