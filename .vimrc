@@ -93,6 +93,7 @@ set lines=40
 set colorcolumn=80
 set columns=84
 set incsearch " jumps to search word as you type
+set spell
 
 set linespace=0
 set showmatch
@@ -150,10 +151,8 @@ endfunction
 
 
 
+" NeoComplcache {
 
-
-" neocomplcache.vim"{{{
-" Use neocomplcache.
 "Note: This option must set it in .vimrc(_vimrc). NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -243,15 +242,37 @@ let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-"}}}
+
+" }
 
 
 
 
+" NeoSnippet {
 
+" Plugin key-mappings.
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+xmap <C-l> <Plug>(neosnippet_start_unite_snippet_target)
 
+" SuperTab like snippets behavior.
+"imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)"
+" \: pumvisible() ? "\<C-n>" : "\<TAB>"
+"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)"
+" \: "\<TAB>"
 
+" For snippet_complete marker.
+if has('conceal')
+	set conceallevel=2 concealcursor=i
+endif
 
+" Enable snipMate compatibility feature.
+" let g:neosnippet#enable_snipmate_compatibility = 1
+
+" }
 
 
 if !has('vim_starting')
