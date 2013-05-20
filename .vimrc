@@ -85,6 +85,15 @@ nnoremap <silent> <F9> :TagbarToggle<CR>
 "}
 
 
+" SQLUtilities
+
+let g:sqlutil_align_comma = 1
+let g:sqlutil_keyword_case = '\U'
+
+
+
+
+
 " Settings
 let mapleader = ','
 set number
@@ -108,6 +117,7 @@ set shiftwidth=4
 set noexpandtab
 
 set autoindent
+set virtualedit=onemore
 
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
