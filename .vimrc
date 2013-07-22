@@ -1,65 +1,68 @@
 set nocompatible
+filetype off
 
-if has('vim_starting')
-	set runtimepath+=~/.vim/bundle/neobundle.vim
-endif
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-call neobundle#rc(expand('~/.vim/bundle'))
+Bundle 'gmarik/vundle'
 
-" Let neobundle manage neobundle
-NeoBundleFetch 'Shougo/neobundle.vim'
+
 
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'Lokaltog/powerline'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'git@github.com:jphustman/cf-utils.vim.git'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'scrooloose/nerdcommenter'
+Bundle 'altercation/vim-colors-solarized'
+" Bundle 'Lokaltog/powerline'
+Bundle 'scrooloose/syntastic'
+Bundle 'pangloss/vim-javascript'
+" NeoBundle 'git@github.com:jphustman/cf-utils.vim.git'
+" NeoBundle 'majutsushi/tagbar'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'matchit.zip'
+Bundle 'tpope/vim-fugitive'
 
-NeoBundle 'JLimperg/Align'
-NeoBundle 'git@github.com:jphustman/SQLUtilities.git'
 
-NeoBundle 'Shougo/neocomplcache', '', 'default'
-call neobundle#config('neocomplcache', {
-			\ 'lazy' : 1,
-			\ 'autoload' : {
-			\ 'insert' : 1,
-			\ }})
+Bundle 'JLimperg/Align'
+Bundle 'git@github.com:jphustman/SQLUtilities.git'
+Bundle 'git@github.com:jphustman/dbext.vim.git'
 
-NeoBundle 'Shougo/neocomplcache-rsense', '', 'default'
-call neobundle#config('neocomplcache-rsense', {
-			\ 'lazy' : 1,
-			\ 'depends' : 'Shougo/neocomplcache',
-			\ 'autoload' : { 'filetypes' : 'ruby' }
-			\ })
+" NeoBundle 'Shougo/neocomplcache', '', 'default'
+" call neobundle#config('neocomplcache', {
+" 			\ 'lazy' : 1,
+" 			\ 'autoload' : {
+" 			\ 'insert' : 1,
+" 			\ }})
+" 
+" NeoBundle 'Shougo/neocomplcache-rsense', '', 'default'
+" call neobundle#config('neocomplcache-rsense', {
+" 			\ 'lazy' : 1,
+" 			\ 'depends' : 'Shougo/neocomplcache',
+" 			\ 'autoload' : { 'filetypes' : 'ruby' }
+" 			\ })
+" 
+" NeoBundle 'Shougo/neosnippet', '', 'default'
+" call neobundle#config('neosnippet', {
+" 			\ 'lazy' : 1,
+" 
+" 
+" 			\ 'autoload' : {
+" 			\ 'insert' : 1,
+" 			\ 'filetypes' : 'snippet',
+" 			\ 'unite_sources' : ['snippet', 'neosnippet/user', 'neosnippet/runtime'],
+" 			\ }})
+"  NeoBundle 'git@github.com:Shougo/neocomplcache-snippets-complete.git'
 
-NeoBundle 'Shougo/neosnippet', '', 'default'
-call neobundle#config('neosnippet', {
-			\ 'lazy' : 1,
-			\ 'autoload' : {
-			\ 'insert' : 1,
-			\ 'filetypes' : 'snippet',
-			\ 'unite_sources' : ['snippet', 'neosnippet/user', 'neosnippet/runtime'],
-			\ }})
-" NeoBundle 'git@github.com:Shougo/neocomplcache-snippets-complete.git'
-
-NeoBundle 'Shougo/neobundle-vim-scripts', '', 'default'
+" NeoBundle 'Shougo/neobundle-vim-scripts', '', 'default'
 
 " ...
 
 filetype plugin indent on " Required!
 
-" Installation check.
-NeoBundleCheck
 
-"...
 
 " Solarized
 syntax enable
@@ -69,8 +72,8 @@ colorscheme solarized
 
 
 " Powerline
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-set laststatus=2 " Always display the statusline in all windows
+" set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" set laststatus=2 " Always display the statusline in all windows
 "set noshowmode " Hide the default mode text (e.g. --INSERT -- below the statusline)
 
 
@@ -78,11 +81,6 @@ set laststatus=2 " Always display the statusline in all windows
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_check_on_open=1
 
-
-" TagBar {
-nnoremap <silent> <F9> :TagbarToggle<CR>
-
-"}
 
 
 " SQLUtilities
@@ -100,7 +98,7 @@ set number
 set cursorline
 set lines=40
 set colorcolumn=80
-set columns=84
+set columns=120
 set incsearch " jumps to search word as you type
 set spell
 
@@ -120,8 +118,9 @@ set autoindent
 set virtualedit=onemore
 
 set list
-set listchars=tab:â€º\ ,trail:â€¢,extends:#,nbsp:. " Highlight problematic whitespace
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 set guifont=Inconsolata\ Medium\ 10
+set backspace=indent,eol,start  " Backspace for dummies
 
 set tags=tags,./tags
 
@@ -131,8 +130,51 @@ map <C-K> <C-W>k<C-W>_
 map <C-L> <C-W>l<C-W>_
 map <C-H> <C-W>h<C-W>_
 
+ " Code folding options
+    nmap <leader>f0 :set foldlevel=0<CR>
+    nmap <leader>f1 :set foldlevel=1<CR>
+    nmap <leader>f2 :set foldlevel=2<CR>
+    nmap <leader>f3 :set foldlevel=3<CR>
+    nmap <leader>f4 :set foldlevel=4<CR>
+    nmap <leader>f5 :set foldlevel=5<CR>
+    nmap <leader>f6 :set foldlevel=6<CR>
+    nmap <leader>f7 :set foldlevel=7<CR>
+    nmap <leader>f8 :set foldlevel=8<CR>
+    nmap <leader>f9 :set foldlevel=9<CR>
+
+ " Adjust viewports to the same size
+    map <Leader>= <C-w>=
 
 
+
+
+
+    if has('cmdline_info')
+        set ruler " Show the ruler
+        set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
+        set showcmd " Show partial commands in status line and
+" Selected characters/lines in visual mode
+    endif
+
+    if has('statusline')
+        set laststatus=2
+
+" Broken down into easily includeable segments
+        set statusline=%<%f\ " Filename
+        set statusline+=%w%h%m%r " Options
+        set statusline+=%{fugitive#statusline()} " Git Hotness
+        set statusline+=\ [%{&ff}/%Y] " Filetype
+        set statusline+=\ [%{getcwd()}] " Current dir
+        set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
+    endif
+
+
+ " Toggle search highlighting
+    nmap <silent> <leader>/ :set invhlsearch<CR>
+
+
+
+noremap <F11> :set list!<CR>
 
 autocmd FileType c,cfml,cfscript,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
@@ -149,143 +191,26 @@ function! StripTrailingWhitespace()
 	call cursor(l, c)
 endfunction
 
+" GUI Settings {
 
-
-
-
-
-
-
-
-
-
-
-
-" NeoComplcache {
-
-"Note: This option must set it in .vimrc(_vimrc). NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Enable heavy features.
-" Use camel case completion.
-"let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-"let g:neocomplcache_enable_underbar_completion = 1
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-			\ 'default' : '',
-			\ 'vimshell' : $HOME.'/.vimshell_hist',
-			\ 'scheme' : $HOME.'/.gosh_completions'
-			\ }
-
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-	let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-	return neocomplcache#smart_close_popup() . "\<CR>"
-	" For no inserting <CR> key.
-	"return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplcache#close_popup()
-inoremap <expr><C-e> neocomplcache#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
-
-" For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left> neocomplcache#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-"inoremap <expr><Up> neocomplcache#close_popup() . "\<Up>"
-"inoremap <expr><Down> neocomplcache#close_popup() . "\<Down>"
-" Or set this.
-"let g:neocomplcache_enable_cursor_hold_i = 1
-" Or set this.
-"let g:neocomplcache_enable_insert_char_pre = 1
-
-" AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-	let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+" GVIM- (here instead of .gvimrc)
+    if has('gui_running')
+        set lines=40 " 40 lines of text instead of 24
+        if has("gui_gtk2")
+            set guifont=Andale\ Mono\ Regular\ 16,Menlo\ Regular\ 15,Consolas\ Regular\ 16,Courier\ New\ Regular\ 18
+        elseif has("gui_mac")
+            set guifont=Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h18
+        elseif has("gui_win32")
+            set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
+        endif
+        if has('gui_macvim')
+            set transparency=5 " Make the window slightly transparent
+        endif
+    else
+        if &term == 'xterm' || &term == 'screen'
+            set t_Co=256 " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
+        endif
+"set term=builtin_ansi " Make arrow and other keys work
+    endif
 
 " }
-
-
-
-
-" NeoSnippet {
-
-" Plugin key-mappings.
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-xmap <C-l> <Plug>(neosnippet_start_unite_snippet_target)
-
-" SuperTab like snippets behavior.
-"imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" \ "\<Plug>(neosnippet_expand_or_jump)"
-" \: pumvisible() ? "\<C-n>" : "\<TAB>"
-"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" \ "\<Plug>(neosnippet_expand_or_jump)"
-" \: "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-	set conceallevel=2 concealcursor=i
-endif
-
-" Enable snipMate compatibility feature.
-" let g:neosnippet#enable_snipmate_compatibility = 1
-
-" }
-
-
-if !has('vim_starting')
-	" Call on_source hook when reloading .vimrc.
-	call neobundle#call_hook('on_source')
-endif
